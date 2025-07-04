@@ -79,17 +79,6 @@ The API will be available at `http://localhost:8000`
 
 ## API Endpoints
 
-### Authentication
-
-| Method | Endpoint | Description | Auth Required |
-|--------|----------|-------------|---------------|
-| POST | `/api/auth/register` | Register a new user | No |
-| POST | `/api/auth/login` | Login user | No |
-| POST | `/api/auth/logout` | Logout user | Yes |
-| GET | `/api/auth/profile` | Get user profile | Yes |
-| PUT | `/api/auth/profile` | Update user profile | Yes |
-| PUT | `/api/auth/password` | Change password | Yes |
-
 ### Posts
 
 | Method | Endpoint | Description | Auth Required |
@@ -113,40 +102,6 @@ The API will be available at `http://localhost:8000`
 | Method | Endpoint | Description | Auth Required |
 |--------|----------|-------------|---------------|
 | GET | `/api/categories/{id}/posts` | Get posts by category | No |
-
-## Authentication
-
-The API uses Laravel Sanctum for token-based authentication.
-
-### Register a new user
-```bash
-curl -X POST http://localhost:8000/api/auth/register \
-  -H "Content-Type: application/json" \
-  -d '{
-    "name": "John Doe",
-    "email": "john@example.com",
-    "password": "password123",
-    "password_confirmation": "password123"
-  }'
-```
-
-### Login
-```bash
-curl -X POST http://localhost:8000/api/auth/login \
-  -H "Content-Type: application/json" \
-  -d '{
-    "email": "john@example.com",
-    "password": "password123"
-  }'
-```
-
-### Using the token
-Include the token in subsequent requests:
-```bash
-curl -X GET http://localhost:8000/api/posts \
-  -H "Authorization: Bearer YOUR_TOKEN_HERE" \
-  -H "Accept: application/json"
-```
 
 ## API Examples
 
@@ -244,11 +199,6 @@ The API implements Laravel Policies for secure access control:
 
 ### Comment Creation/Update
 - `content`: Required, string
-
-### User Registration
-- `name`: Required, string, max 255 characters
-- `email`: Required, valid email, unique
-- `password`: Required, minimum 8 characters, confirmed
 
 ## Testing
 
