@@ -1,4 +1,3 @@
-
 # Laravel Blog API
 
 A RESTful API for a blogging platform built with Laravel, featuring user authentication, post management, commenting system, and comprehensive authorization using Laravel Policies.
@@ -19,7 +18,7 @@ A RESTful API for a blogging platform built with Laravel, featuring user authent
 
 - PHP 8.2 or higher
 - Laravel 12.0
-- MySQL/PostgreSQL/SQLite
+- **PostgreSQL** (default database)
 - Composer
 
 ## Installation
@@ -41,16 +40,21 @@ A RESTful API for a blogging platform built with Laravel, featuring user authent
    php artisan key:generate
    ```
 
-4. **Configure database**
-   Edit `.env` file with your database credentials:
-   ```env
-   DB_CONNECTION=mysql
-   DB_HOST=127.0.0.1
-   DB_PORT=3306
-   DB_DATABASE=laravel_blog_api
-   DB_USERNAME=your_username
-   DB_PASSWORD=your_password
-   ```
+4. **Configure PostgreSQL database**
+   - Make sure PostgreSQL is running and a database is created:
+     ```sh
+     createdb -U your_postgres_user your_database_name
+     ```
+   - Edit your `.env` file as follows:
+     ```env
+     DB_CONNECTION=pgsql
+     DB_HOST=127.0.0.1
+     DB_PORT=5432
+     DB_DATABASE=your_database_name
+     DB_USERNAME=your_postgres_user
+     DB_PASSWORD=your_postgres_password
+     ```
+   - Replace `your_database_name`, `your_postgres_user`, and `your_postgres_password` with your actual PostgreSQL credentials.
 
 5. **Run migrations**
    ```bash
@@ -63,6 +67,15 @@ A RESTful API for a blogging platform built with Laravel, featuring user authent
    ```
 
 The API will be available at `http://localhost:8000`
+
+---
+
+## ⚠️ PostgreSQL Troubleshooting
+- If you get a connection error, ensure PostgreSQL is running and the credentials in `.env` are correct.
+- If you see `could not connect to server: Connection refused`, check that PostgreSQL is listening on the correct port (default: 5432).
+- If you see `database does not exist`, create it with `createdb` or your preferred tool.
+
+---
 
 ## API Endpoints
 
